@@ -3,6 +3,9 @@ package com.adviceapp.adviceapp.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Data
 @Table(name = "Category")
@@ -20,4 +23,8 @@ public class Category {
 
    /* @OneToMany(mappedBy = "category")
     private Set<Content> contents;*/
+
+    @ManyToMany(mappedBy = "categories")
+    private Set<UserInterest> userCategories = new HashSet<>();
+
 }
