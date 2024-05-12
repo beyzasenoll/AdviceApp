@@ -2,9 +2,6 @@ package com.adviceapp.adviceapp.dto;
 
 import lombok.*;
 
-import java.util.HashSet;
-import java.util.Set;
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -18,4 +15,4 @@ public class UserDto {
     private String email;
     private String password;
     private String phone_num;
-    private Set<UserInterestDto> userInterests = new HashSet<>();}
+}

@@ -12,19 +12,20 @@ import java.util.Set;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long category_id;
+    private Long id;
 
     @Column(name = "category_name")
     private String category_name;
 
-    @ManyToOne
-    @JoinColumn(name = "platform_id")
-    private Platform platform;
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            name = "platform_category",
+            joinColumns = { @JoinColumn(name = "category_id") },
+            inverseJoinColumns = { @JoinColumn(name = "platform_id") }
+    )
+    Set<Platform> platforms = new HashSet<>();
 
-   /* @OneToMany(mappedBy = "category")
-    private Set<Content> contents;*/
-
-    @ManyToMany(mappedBy = "categories")
-    private Set<UserInterest> userCategories = new HashSet<>();
+    @OneToMany(mappedBy="category")
+    private Set<Content> contents;
 
 }

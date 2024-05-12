@@ -16,9 +16,7 @@ public class Platform {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "platform")
+    @ManyToMany(mappedBy = "platforms")
     private List<Category> categories;
 
-  /*  @OneToMany(mappedBy = "platform")
-    private List<Content> contents;*/
 }

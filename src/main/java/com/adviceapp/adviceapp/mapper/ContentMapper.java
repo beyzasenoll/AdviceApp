@@ -1,10 +1,10 @@
 package com.adviceapp.adviceapp.mapper;
 
 import com.adviceapp.adviceapp.dto.ContentDto;
-import com.adviceapp.adviceapp.entity.Category;
 import com.adviceapp.adviceapp.entity.Content;
-import com.adviceapp.adviceapp.entity.Platform;
+import lombok.Data;
 
+@Data
 public class ContentMapper {
 
     public static ContentDto mapToContentDto(Content content) {
@@ -12,12 +12,12 @@ public class ContentMapper {
             return null;
         }
         return new ContentDto(
-                content.getContent_id(),
-                content.getContentType(),
-                content.getContentName(),
-                content.getContentDuration(),
-                content.getCategory() != null ? content.getCategory().getCategory_id() : null,
-                content.getPlatform() != null ? content.getPlatform().getPlatform_id() : null
+                content.getId(),
+                content.getType(),
+                content.getTitle(),
+                content.getDescription(),
+                content.getDuration(),
+                content.getId()
         );
     }
 
@@ -27,22 +27,11 @@ public class ContentMapper {
         }
 
         Content content = new Content();
-        content.setContent_id(contentDto.getContent_id());
-        content.setContentType(contentDto.getContentType());
-        content.setContentName(contentDto.getContentName());
-        content.setContentDuration(contentDto.getContentDuration());
-
-        if (contentDto.getCategoryId() != null) {
-            Category category = new Category();
-            category.setCategory_id(contentDto.getCategoryId());
-            content.setCategory(category);
-        }
-
-        if (contentDto.getPlatformId() != null) {
-            Platform platform = new Platform();
-            platform.setPlatform_id(contentDto.getPlatformId());
-            content.setPlatform(platform);
-        }
+        content.setId(contentDto.getId());
+        content.setType(contentDto.getType());
+        content.setTitle(contentDto.getTitle());
+        content.setDuration(contentDto.getDuration());
+        content.getCategory().setId(contentDto.getId());
 
         return content;
     }

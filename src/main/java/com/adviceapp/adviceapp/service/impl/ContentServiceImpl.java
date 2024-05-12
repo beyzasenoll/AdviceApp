@@ -43,9 +43,9 @@ public class ContentServiceImpl implements ContentService {
     public ContentDto updateContent(Long contentId, ContentDto updatedContent) {
         Content content = contentRepository.findById(contentId).orElseThrow(
                 () -> new ResourceNotFoundException("Content is not exists with given id: " + contentId));
-        content.setContentName(updatedContent.getContentName());
-        content.setContentDuration(updatedContent.getContentDuration());
-        content.setContentType(updatedContent.getContentType());
+        content.setTitle(updatedContent.getTitle());
+        content.setDuration(updatedContent.getDuration());
+        content.setType(updatedContent.getType());
 
         Content updatedContentObj = contentRepository.save(content);
         return ContentMapper.mapToContentDto(updatedContentObj);

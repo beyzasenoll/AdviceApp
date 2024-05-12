@@ -1,31 +1,29 @@
 package com.adviceapp.adviceapp.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "Content")
 public class Content {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long content_id;
+    private Long id;
     @Column(name = "content_type")
-    private String contentType;
+    private String type;
     @Column(name = "content_name")
-    private String contentName;
+    private String title;
     @Column(name = "content_duration")
-    private Double contentDuration;
+    private Double duration;
+    @Column(name = "description")
+    private String description;
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "category_id", nullable = false)
     private Category category;
-
-    @ManyToOne
-    @JoinColumn(name = "platform_id")
-    private Platform platform;
+    @ManyToMany(mappedBy = "contents")
+    private List<User> users;
 
 }

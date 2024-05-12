@@ -8,6 +8,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 import java.util.List;
 
@@ -15,36 +18,48 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/content")
 public class ContentController {
-        private ContentService contentService;
+    private static final Logger logger = LoggerFactory.getLogger(ContentController.class);
+    private ContentService contentService;
 
-        @PostMapping
-        public ResponseEntity<ContentDto> createContent(@RequestBody ContentDto contentDto) {
-            ContentDto savedContent = contentService.createContent(contentDto);
-            return new ResponseEntity<>(savedContent, HttpStatus.CREATED);
-        }
+    @PostMapping
+    public ResponseEntity<ContentDto> createContent(@RequestBody ContentDto contentDto) {
+        logger.info("Creating content: {}", contentDto);
+        ContentDto savedContent = contentService.createContent(contentDto);
+        logger.info("Content created: {}", savedContent);
+        return new ResponseEntity<>(savedContent, HttpStatus.CREATED);
+    }
 
-        @GetMapping("{id}")
-        public ResponseEntity<ContentDto> getContentbyId(@PathVariable("id") Long contentId) {
-            ContentDto contentDto = contentService.getContentById(contentId);
-            return ResponseEntity.ok(contentDto);
-        }
+    @GetMapping("{id}")
+    public ResponseEntity<ContentDto> getContentById(@PathVariable("id") Long contentId) {
+        logger.info("Getting content by id: {}", contentId);
+        ContentDto contentDto = contentService.getContentById(contentId);
+        logger.info("Retrieved content: {}", contentDto);
+        return ResponseEntity.ok(contentDto);
+    }
 
-        @GetMapping
-        public ResponseEntity<List<ContentDto>> getALlContents() {
-            List<ContentDto> contents = contentService.gelAllContents();
-            return ResponseEntity.ok(contents);
-        }
+    @GetMapping
+    public ResponseEntity<List<ContentDto>> getAllContents() {
+        logger.info("Getting all contents");
+        List<ContentDto> contents = contentService.gelAllContents();
+        logger.info("Retrieved {} contents", contents.size());
+        return ResponseEntity.ok(contents);
+    }
 
-        @PutMapping("{id}")
-        public ResponseEntity<ContentDto> updateContent(@PathVariable("id") Long contentId,
-                                                      @RequestBody ContentDto updatedContent) {
-            ContentDto contentDto = contentService.updateContent(contentId, updatedContent);
-            return ResponseEntity.ok(contentDto);
-        }
+    @PutMapping("{id}")
+    public ResponseEntity<ContentDto> updateContent(@PathVariable("id") Long contentId,
+                                                    @RequestBody ContentDto updatedContent) {
+        logger.info("Updating content with id {}: {}", contentId, updatedContent);
+        ContentDto contentDto = contentService.updateContent(contentId, updatedContent);
+        logger.info("Updated content: {}", contentDto);
+        return ResponseEntity.ok(contentDto);
+    }
 
-        @DeleteMapping("{id}")
-        public ResponseEntity<String> deleteContent(@PathVariable("id") Long contentId) {
-            contentService.deleteContent(contentId);
-            return ResponseEntity.ok("Content deleted succesfully!");
-        }
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteContent(@PathVariable("id") Long contentId) {
+        logger.info("Deleting content with id: {}", contentId);
+        contentService.deleteContent(contentId);
+        logger.info("Content deleted successfully!");
+        return ResponseEntity.ok("Content deleted successfully!");
+    }
+
 }

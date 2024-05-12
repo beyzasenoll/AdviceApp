@@ -9,11 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ContentDto {
 
-    private Long content_id;
-    private String contentType;
-    private String contentName;
-    private Double contentDuration;
-    private Long categoryId;
-    private Long platformId;
-
+    private Long id;
+    private String type;
+    private String title;
+    private String description;
+    private Double duration;
+    private Long categoryID;
 }
