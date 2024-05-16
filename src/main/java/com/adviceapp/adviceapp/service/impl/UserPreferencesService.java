@@ -1,4 +1,4 @@
-package com.adviceapp.adviceapp.service;
+package com.adviceapp.adviceapp.service.impl;
 
 import com.adviceapp.adviceapp.dto.UserPreferencesDto;
 import com.adviceapp.adviceapp.entity.Content;
@@ -8,6 +8,7 @@ import com.adviceapp.adviceapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -23,16 +24,24 @@ public class UserPreferencesService {
     }
 
     public void matchUserPreferences(UserPreferencesDto userPreferencesDto) {
-        List<Content> userSelectedContents = contentRepository.findByCategoryId(userPreferencesDto.getCategoryId());
+        List<Content> availableContents = contentRepository.findByCategoryId(userPreferencesDto.getCategoryId());
         User user = userRepository.findById(userPreferencesDto.getUserId()).orElseThrow(() -> new IllegalArgumentException("User not found"));
-        userSelectedContents.stream().forEach(content ->  {
-            var availabilityDuration = userPreferencesDto.getAvailabilityDuration();
-            if(content.getDuration() < availabilityDuration) {
-                userSelectedContents.add(content);
-                availabilityDuration =  availabilityDuration - content.getDuration();
+
+        List<Content> selectedContents = new ArrayList<>();
+        double availabilityDuration = userPreferencesDto.getAvailabilityDuration();
+
+        for (Content content : availableContents) {
+            // Check if the duration is not null and is less than or equal to the available duration
+            if (content.getDuration() != null && content.getDuration() <= availabilityDuration) {
+                selectedContents.add(content);
+                availabilityDuration -= content.getDuration();
             }
-        user.getContents().addAll(userSelectedContents);
+            if (availabilityDuration <= 0) {
+                break;
+            }
+        }
+
+        user.getContents().addAll(selectedContents);
         userRepository.save(user);
-    });
-  }
+    }
 }

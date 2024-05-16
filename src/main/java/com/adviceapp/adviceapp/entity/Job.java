@@ -20,7 +20,7 @@ public class Job {
     @Column(name = "job_name")
     private String job_name;
 
-
-    @OneToMany(mappedBy="job",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="job", cascade = CascadeType.ALL)
     private Set<User> users;
 }
+

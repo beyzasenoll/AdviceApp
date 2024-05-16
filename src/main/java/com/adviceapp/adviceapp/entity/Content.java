@@ -24,7 +24,7 @@ public class Content {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @ManyToOne(cascade = CascadeType.ALL) // Ensure cascading save operation
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "platform_id", referencedColumnName = "platform_id")
     private Platform platform;
 

@@ -1,10 +1,7 @@
 package com.adviceapp.adviceapp.controller;
 
-import com.adviceapp.adviceapp.dto.UserDto;
 import com.adviceapp.adviceapp.dto.UserPreferencesDto;
-import com.adviceapp.adviceapp.entity.Content;
-import com.adviceapp.adviceapp.service.UserPreferencesService;
-import lombok.AllArgsConstructor;
+import com.adviceapp.adviceapp.service.impl.UserPreferencesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,9 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 @RestController

@@ -1,9 +1,11 @@
 package com.adviceapp.adviceapp.service.impl;
 
 import com.adviceapp.adviceapp.dto.UserDto;
+import com.adviceapp.adviceapp.entity.Job;
 import com.adviceapp.adviceapp.entity.User;
 import com.adviceapp.adviceapp.exception.ResourceNotFoundException;
 import com.adviceapp.adviceapp.mapper.UserMapper;
+import com.adviceapp.adviceapp.repository.JobRepository;
 import com.adviceapp.adviceapp.repository.UserRepository;
 import com.adviceapp.adviceapp.service.UserService;
 import lombok.AllArgsConstructor;
@@ -18,13 +20,22 @@ import java.util.stream.Collectors;
 @Data
 public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
+    private JobRepository jobRepository;
 
     @Override
     public UserDto createUser(UserDto userDto) {
         User user = UserMapper.mapToUser(userDto);
+
+        if (userDto.getJob() != null && userDto.getJob().getId() != null) {
+            Job job = jobRepository.findById(userDto.getJob().getId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Job not found with id: " + userDto.getJob().getId()));
+            user.setJob(job);
+        }
+
         User savedUser = userRepository.save(user);
         return UserMapper.mapToUserDto(savedUser);
     }
+
 
     @Override
     public UserDto getUserById(Long userId) {

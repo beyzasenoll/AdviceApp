@@ -15,4 +15,6 @@ public class UserDto {
     private String email;
     private String password;
     private String phone_num;
+    private JobDto job;
+
 }
