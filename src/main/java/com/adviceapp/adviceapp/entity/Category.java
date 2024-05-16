@@ -17,15 +17,7 @@ public class Category {
     @Column(name = "category_name")
     private String category_name;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-            name = "platform_category",
-            joinColumns = { @JoinColumn(name = "category_id") },
-            inverseJoinColumns = { @JoinColumn(name = "platform_id") }
-    )
-    Set<Platform> platforms = new HashSet<>();
-
-    @OneToMany(mappedBy="category")
+    @OneToMany(mappedBy="category",cascade = CascadeType.ALL)
     private Set<Content> contents;
 
 }

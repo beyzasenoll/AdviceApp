@@ -20,10 +20,16 @@ public class Content {
     private Double duration;
     @Column(name = "description")
     private String description;
-    @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id")
     private Category category;
+
+    @ManyToOne(cascade = CascadeType.ALL) // Ensure cascading save operation
+    @JoinColumn(name = "platform_id", referencedColumnName = "platform_id")
+    private Platform platform;
+
     @ManyToMany(mappedBy = "contents")
     private List<User> users;
+
 
 }

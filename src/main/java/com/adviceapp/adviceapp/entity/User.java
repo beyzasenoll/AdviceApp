@@ -12,10 +12,10 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // bu alanın otomatik olarak artan bir şekilde (identity) oluşturulacağını belirtir.
+    // Specifies that this field will be automatically created in ascending order (identity).
     private Long id;
     @Column(name = "user_name", nullable = false, unique = true)
-    //bu sütunun boş bırakılamayacağını ve benzersiz olması gerektiğini belirtir
+    //Specifies that column won't be empty,and it should be unique value.
     private String user_name;
     @Column(name = "first_name")
     private String firstName;
@@ -31,9 +31,12 @@ public class User {
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
             name = "user_content",
-            joinColumns = { @JoinColumn(name = "user_id") },
-            inverseJoinColumns = { @JoinColumn(name = "content_id") }
+            joinColumns = {@JoinColumn(name = "user_id") },
+            inverseJoinColumns = {@JoinColumn(name = "content_id") }
     )
     Set<Content> contents = new HashSet<>();
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "job-id", referencedColumnName = "id")
+    private Job job ;
 }

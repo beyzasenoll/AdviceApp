@@ -15,4 +15,5 @@ public class ContentDto {
     private String description;
     private Double duration;
     private Long categoryID;
+    private Long platformId;
 }

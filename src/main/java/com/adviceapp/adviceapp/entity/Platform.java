@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -16,7 +17,6 @@ public class Platform {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(mappedBy = "platforms")
-    private List<Category> categories;
-
+    @OneToMany(mappedBy="platform")
+    private Set<Content> contents;
 }
