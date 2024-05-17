@@ -20,6 +20,9 @@ public class Content {
     private Double duration;
     @Column(name = "description")
     private String description;
+    @Column(name = "link")
+
+    private String link;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id")
     private Category category;
