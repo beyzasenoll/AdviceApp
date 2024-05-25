@@ -20,7 +20,8 @@ public class ContentMapper {
                 content.getDescription(),
                 content.getDuration(),
                 content.getCategory().getId(),
-                content.getPlatform().getPlatform_id()
+                content.getPlatform().getPlatform_id(),
+                content.getLink()
         );
     }
 
@@ -43,6 +44,7 @@ public class ContentMapper {
             content.setPlatform(new Platform());
         }
         content.getPlatform().setPlatform_id(contentDto.getPlatformId());
+        content.setLink(contentDto.getLink());
 
         return content;
 

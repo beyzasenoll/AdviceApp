@@ -15,7 +15,7 @@ import java.util.List;
 public class UserController {
     private UserService userService;
 
-    @PostMapping
+    @PostMapping({"newUser"})
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
         UserDto savedUser = userService.createUser(userDto);
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
@@ -44,5 +44,15 @@ public class UserController {
     public ResponseEntity<String> deleteUser(@PathVariable("id") Long userId) {
         userService.deleteUser(userId);
         return ResponseEntity.ok("User deleted succesfully!");
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<UserDto> authenticateUser(@RequestBody UserDto userDto) {
+        UserDto authenticatedUser = userService.authenticateUser(userDto.getEmail(), userDto.getPassword());
+        if (authenticatedUser != null) {
+            return ResponseEntity.ok(authenticatedUser);
+        } else {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
     }
 }

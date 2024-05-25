@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdviceApp</title>
+    <link rel="stylesheet" href="/css/style2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+<header class="hero">
+    <div class="header-menu">
+        <a href="/login" class="sign-up"><i class="fas fa-user-plus"></i> </a>
+    </div>
+    <div class="hero-content">
+        <h1>Welcome</h1>
+        <form class="checkbox-group" id="category-form">
+            <legend class="checkbox-group-legend">Choose your content category</legend>
+            <!-- Existing categories -->
+            <!-- (Category options as before) -->
+            <!-- Search option for other categories -->
+            <div class="checkbox">
+                <label class="checkbox-wrapper">
+                    <input type="radio" name="interest" class="checkbox-input" id="search-category-radio" value="Other" />
+                    <span class="checkbox-tile">
+                        <span class="checkbox-icon">
+                            <i class="material-icons">search</i>
+                        </span>
+                        <span class="checkbox-label">Other</span>
+                    </span>
+                </label>
+            </div>
+            <div id="search-category-div" style="display: none;">
+                <input type="text" id="search-category-input" placeholder="Enter your category" />
+            </div>
+        </form>
+        <form class="checkbox-group" id="time-form">
+            <legend class="checkbox-group-legend">Choose a time period</legend>
+            <!-- Existing time periods -->
+            <!-- Additional time period option -->
+            <div class="checkbox">
+                <label class="checkbox-wrapper">
+                    <input type="radio" name="time_period" class="checkbox-input" id="other-time-period-radio" value="Other" />
+                    <span class="checkbox-tile">
+                        <span class="checkbox-icon">
+                            <i class="material-icons">alarm_add</i>
+                        </span>
+                        <span class="checkbox-label">Other</span>
+                    </span>
+                </label>
+            </div>
+            <div id="other-time-period-div" style="display: none;">
+                <input type="text" id="other-time-period-input" placeholder="Enter your time period" />
+            </div>
+        </form>
+        <a href="#" class="btn" id="get-started-btn">Get Started</a>
+    </div>
+</header>
+<footer>
+</footer>
+<script>
+    document.getElementById('search-category-radio').addEventListener('change', function() {
+        document.getElementById('search-category-div').style.display = 'block';
+    });
+    document.getElementById('other-time-period-radio').addEventListener('change', function() {
+        document.getElementById('other-time-period-div').style.display = 'block';
+    });
+    document.getElementById('get-started-btn').addEventListener('click', function(event) {
+        event.preventDefault();
+        const selectedCategory = document.querySelector('input[name="interest"]:checked').value;
+        const selectedTimePeriod = document.querySelector('input[name="time_period"]:checked').value;
+        let category = selectedCategory;
+        let timePeriod = selectedTimePeriod;
+        if (selectedCategory === 'Other') {
+            category = document.getElementById('search-category-input').value;
+        }
+        if (selectedTimePeriod === 'Other') {
+            timePeriod = document.getElementById('other-time-period-input').value;
+        }
+        window.location.href = `/api/userPreferences/content?category=${category}&time_period=${timePeriod}`;
+    });
+</script>
+</body>
+</html>

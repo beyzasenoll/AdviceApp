@@ -40,7 +40,7 @@ public class User {
         )
         private Set<Content> contents = new HashSet<>();
 
-        @ManyToOne
+        @ManyToOne(cascade = CascadeType.PERSIST)
         @JoinColumn(name = "job_id")
         private Job job;
     }

@@ -13,6 +13,7 @@ import lombok.Data;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -71,5 +72,10 @@ public class UserServiceImpl implements UserService {
                 () -> new ResourceNotFoundException("User is not exists with given id: " + userId)
         );
         userRepository.deleteById(userId);
+    }
+    @Override
+    public UserDto authenticateUser(String email, String password) {
+        Optional<User> userOptional = userRepository.findByEmailAndPassword(email, password);
+        return userOptional.map(UserMapper::mapToUserDto).orElse(null);
     }
 }
