@@ -24,7 +24,7 @@ public class CategoryServiceImpl {
 
         List<CategoryDto> categoriesDto = categories.stream().map(x ->
                 new CategoryDto(
-                        x.getId(), x.getCategory_name()
+                        x.getId(), x.getCategory_name(), x.getIcon()
                 )
         ).toList();
 

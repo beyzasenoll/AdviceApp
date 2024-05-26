@@ -17,6 +17,9 @@ public class Category {
     @Column(name = "category_name")
     private String category_name;
 
+    @Column(name = "icon")
+    private String icon;
+
     @OneToMany(mappedBy="category",cascade = CascadeType.ALL)
     private Set<Content> contents;
 

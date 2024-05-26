@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AdviceApp</title>
-    <link rel="stylesheet" href="../static/css/style2.css">
+    <link rel="stylesheet" href="/css/style2.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
@@ -17,162 +17,68 @@
 
 
     <div class="hero-content">
-    <h1>Welcome</h1>
+        <h1>Welcome</h1>
 
-    <form class="checkbox-group">
-        <legend class="checkbox-group-legend">Choose your content category</legend>
+        <form class="checkbox-group" id="categoriesHTMLWrapper">
+            <legend class="checkbox-group-legend">Choose your content category</legend>
 
-        <div class="checkbox">
-            <label class="checkbox-wrapper">
-                <input type="radio" name="interest" class="checkbox-input" />
-                <span class="checkbox-tile">
-                    <span class="checkbox-icon">
-                        <i class="material-icons">sports_soccer</i>
-                    </span>
-                    <span class="checkbox-label">Sport</span>
-                </span>
-            </label>
-        </div>
 
-        <div class="checkbox">
-            <label class="checkbox-wrapper">
-                <input type="radio" name="interest" class="checkbox-input" />
-                <span class="checkbox-tile">
-                    <span class="checkbox-icon">
-                        <i class="material-icons">restaurant</i>
-                    </span>
-                    <span class="checkbox-label">Cooking</span>
-                </span>
-            </label>
-        </div>
-
-        <div class="checkbox">
-            <label class="checkbox-wrapper">
-                <input type="radio" name="interest" class="checkbox-input" />
-                <span class="checkbox-tile">
-                    <span class="checkbox-icon">
-                        <i class="material-icons">music_note</i>
-                    </span>
-                    <span class="checkbox-label">Music</span>
-                </span>
-            </label>
-        </div>
-
-        <div class="checkbox">
-            <label class="checkbox-wrapper">
-                <input type="radio" name="interest" class="checkbox-input" />
-                <span class="checkbox-tile">
-                    <span class="checkbox-icon">
-                        <i class="material-icons">palette</i>
-                    </span>
-                    <span class="checkbox-label">Art</span>
-                </span>
-            </label>
-        </div>
-
-        <div class="checkbox">
-            <label class="checkbox-wrapper">
-                <input type="radio" name="interest" class="checkbox-input" />
-                <span class="checkbox-tile">
-                    <span class="checkbox-icon">
-                        <i class="material-icons">computer</i>
-                    </span>
-                    <span class="checkbox-label">Technology</span>
-                </span>
-            </label>
-        </div>
-
-        <div class="checkbox">
-            <label class="checkbox-wrapper">
-                <input type="radio" name="interest" class="checkbox-input" />
-                <span class="checkbox-tile">
-                    <span class="checkbox-icon">
-                        <i class="material-icons">flight</i>
-                    </span>
-                    <span class="checkbox-label">Travel</span>
-                </span>
-            </label>
-        </div>
-
-        <div class="checkbox">
-            <label class="checkbox-wrapper">
-                <input type="radio" name="interest" class="checkbox-input" />
-                <span class="checkbox-tile">
-                    <span class="checkbox-icon">
-                        <i class="material-icons">movie</i>
-                    </span>
-                    <span class="checkbox-label">Cinema</span>
-                </span>
-            </label>
-        </div>
-
-        <div class="checkbox">
-            <label class="checkbox-wrapper">
-                <input type="radio" name="interest" class="checkbox-input" />
-                <span class="checkbox-tile">
-                    <span class="checkbox-icon">
-                        <i class="material-icons">style</i>
-                    </span>
-                    <span class="checkbox-label">Fashion</span>
-                </span>
-            </label>
-        </div>
-    </form>
+        </form>
 
         <form class="checkbox-group">
             <legend class="checkbox-group-legend">Choose a time period</legend>
 
             <div class="checkbox">
                 <label class="checkbox-wrapper">
-                    <input type="radio" name="time_period" class="checkbox-input" value="1-2 hours" />
+                    <input type="radio" name="time_period" class="checkbox-input" value="120"/>
                     <span class="checkbox-tile">
                     <span class="checkbox-icon">
                         <i class="material-icons">access_time</i> <!-- 1-2 hours icon -->
                     </span>
-                    <span class="checkbox-label">1-2 Hours</span>
+                    <span class="checkbox-label">2 Hours</span>
                 </span>
                 </label>
             </div>
 
             <div class="checkbox">
                 <label class="checkbox-wrapper">
-                    <input type="radio" name="time_period" class="checkbox-input" value="2.5-3 hours" />
+                    <input type="radio" name="time_period" class="checkbox-input" value="240"/>
                     <span class="checkbox-tile">
                     <span class="checkbox-icon">
                         <i class="material-icons">schedule</i> <!-- 2.5-3 hours icon -->
                     </span>
-                    <span class="checkbox-label">2-3 Hours</span>
+                    <span class="checkbox-label">4 Hours</span>
                 </span>
                 </label>
             </div>
 
             <div class="checkbox">
                 <label class="checkbox-wrapper">
-                    <input type="radio" name="time_period" class="checkbox-input" value="3.5-4 hours" />
+                    <input type="radio" name="time_period" class="checkbox-input" value="360"/>
                     <span class="checkbox-tile">
                     <span class="checkbox-icon">
                         <i class="material-icons">timer</i> <!-- 3.5-4 hours icon -->
                     </span>
-                    <span class="checkbox-label">3-4 Hours</span>
+                    <span class="checkbox-label">6 Hours</span>
                 </span>
                 </label>
             </div>
 
             <div class="checkbox">
                 <label class="checkbox-wrapper">
-                    <input type="radio" name="time_period" class="checkbox-input" value="4.5-5 hours" />
+                    <input type="radio" name="time_period" class="checkbox-input" value="480"/>
                     <span class="checkbox-tile">
                     <span class="checkbox-icon">
                         <i class="material-icons">alarm</i> <!-- 4.5-5 hours icon -->
                     </span>
-                    <span class="checkbox-label">4-5 Hours</span>
+                    <span class="checkbox-label">8 Hours</span>
                 </span>
                 </label>
             </div>
         </form>
 
 
-        <a href="content.html" class="btn">Get Started</a>
+        <a href="#" onclick="getStarted()" class="btn">Get Started</a>
     </div>
 </header>
 
@@ -180,5 +86,69 @@
 <footer>
 
 </footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+            console.log("document ready");
+            mainFunc();
+        }
+    );
+
+    async function mainFunc() {
+        console.log("this is main func");
+
+        const categories = await fetch('/api/category')
+
+        console.log("categories get edildi.")
+
+        const categoriesJson = await categories.json()
+
+        console.log("categories json'a çevrildi.")
+
+        console.log(categoriesJson[0].name)
+
+        const categoriesWrapper = document.getElementById("categoriesHTMLWrapper")
+
+        let categoriesHtml = '';
+
+        for (let i = 0; i < categoriesJson.length; i++) {
+            categoriesHtml += '<div class="checkbox">\n' +
+                '                <label class="checkbox-wrapper">\n' +
+                '                    <input type="radio" name="interest" class="checkbox-input" value="' + categoriesJson[i].id + '"/>\n' +
+                '                    <span class="checkbox-tile">\n' +
+                '                    <span class="checkbox-icon">\n' +
+                '                        <i class="material-icons">' + categoriesJson[i].icon + '</i>\n' +
+                '                    </span>\n' +
+                '                    <span class="checkbox-label">' + categoriesJson[i].name + '</span>\n' +
+                '                </span>\n' +
+                '                </label>\n' +
+                '            </div>'
+        }
+
+        categoriesWrapper.innerHTML = categoriesHtml
+
+    }
+
+    function getStarted() {
+        const selectedCategory = document.querySelector('input[name="interest"]:checked');
+        const selectedTimePeriod = document.querySelector('input[name="time_period"]:checked');
+
+        console.log(selectedCategory)
+        console.log(selectedTimePeriod)
+
+        if (!selectedCategory || !selectedTimePeriod) {
+            alert('Please select a category and a time period.');
+            return;
+        }
+
+        const categoryId = selectedCategory.value;
+        const timePeriod = selectedTimePeriod.value;
+
+        // Redirect to content.html with selected category and time period
+        window.location.href = `content.html?category=${categoryId}&time=${timePeriod}`;
+    }
+</script>
+
 </body>
 </html>
