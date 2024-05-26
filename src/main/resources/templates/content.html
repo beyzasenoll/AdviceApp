@@ -111,14 +111,17 @@
 
     $(document).ready(function () {
             console.log("content document ready");
-            contentMainFunc();
+            setTimeout(() => contentMainFunc(), 3000);
         }
     );
 
     async function contentMainFunc() {
         console.log("this is content main func");
 
-        const userInfo = await fetch('/api/user/1') //TODO change userId
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get('userId');
+
+        const userInfo = await fetch('/api/user/' + userId) //TODO change userId
 
         console.log("user info get edildi.")
 

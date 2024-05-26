@@ -20,4 +20,6 @@ public interface UserService {
     UserDto updateUser(Long userId, UserDto updateUser);
 
     void deleteUser(Long userId);
+
+    UserDto authenticateUser(String email, String password);
 }

@@ -130,6 +130,7 @@
 
     }
 
+
     function getStarted() {
         const selectedCategory = document.querySelector('input[name="interest"]:checked');
         const selectedTimePeriod = document.querySelector('input[name="time_period"]:checked');
@@ -145,8 +146,13 @@
         const categoryId = selectedCategory.value;
         const timePeriod = selectedTimePeriod.value;
 
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get('userId');
+
+        console.log("userId:" + userId)
+
         var userContentsDto = {
-            userId: 1,
+            userId: userId,
             categoryId: categoryId,
             availabilityDuration: timePeriod
         };
@@ -159,8 +165,15 @@
             body: JSON.stringify(userContentsDto)
         })
 
-        console.log(preferences.json())
+        console.log("preferences kaydedildi.")
 
+
+
+        console.log("2userId:" + userId)
+
+        const url = `/content?userId=` + userId;
+
+        window.location.href = url;
 
     }
 </script>
