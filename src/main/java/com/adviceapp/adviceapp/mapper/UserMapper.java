@@ -22,7 +22,8 @@ public class UserMapper {
                 user.getEmail(),
                 user.getPassword(),
                 user.getPhone_num(),
-                jobDto
+                jobDto,
+                user.getContents().stream().map(x -> x.getId()).toList()
         );
     }
 

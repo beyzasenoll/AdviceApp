@@ -2,6 +2,8 @@ package com.adviceapp.adviceapp.dto;
 
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -16,5 +18,6 @@ public class UserDto {
     private String password;
     private String phone_num;
     private JobDto job;
+    private List<Long> contentIds;
 
 }

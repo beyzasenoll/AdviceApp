@@ -23,7 +23,7 @@ public class UserPreferencesService {
         this.userRepository = userRepository;
     }
 
-    public void matchUserPreferences(UserPreferencesDto userPreferencesDto) {
+    public List<Long> matchUserPreferences(UserPreferencesDto userPreferencesDto) {
         List<Content> availableContents = contentRepository.findByCategoryId(userPreferencesDto.getCategoryId());
         User user = userRepository.findById(userPreferencesDto.getUserId()).orElseThrow(() -> new IllegalArgumentException("User not found"));
 
@@ -43,5 +43,6 @@ public class UserPreferencesService {
 
         user.getContents().addAll(selectedContents);
         userRepository.save(user);
+        return selectedContents.stream().map(it -> it.getId()).toList();
     }
 }

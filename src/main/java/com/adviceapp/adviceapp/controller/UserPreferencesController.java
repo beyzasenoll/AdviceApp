@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/api/matchPreferences")
@@ -21,8 +23,8 @@ public class UserPreferencesController {
         this.userPreferencesService = userPreferencesService;
     }
     @PostMapping
-    public ResponseEntity<String> matchUserPreferences(@RequestBody UserPreferencesDto userPreferencesDto) {
-        userPreferencesService.matchUserPreferences(userPreferencesDto);
-        return new ResponseEntity<>("User preferences matched successfully", HttpStatus.OK);
+    public ResponseEntity<List<Long>> matchUserPreferences(@RequestBody UserPreferencesDto userPreferencesDto) {
+        List<Long> contentIds = userPreferencesService.matchUserPreferences(userPreferencesDto);
+        return ResponseEntity.ok(contentIds);
     }
 }

@@ -145,8 +145,23 @@
         const categoryId = selectedCategory.value;
         const timePeriod = selectedTimePeriod.value;
 
-        // Redirect to content.html with selected category and time period
-        window.location.href = `content.html?category=${categoryId}&time=${timePeriod}`;
+        var userContentsDto = {
+            userId: 1,
+            categoryId: categoryId,
+            availabilityDuration: timePeriod
+        };
+
+        const preferences = fetch('/api/matchPreferences', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userContentsDto)
+        })
+
+        console.log(preferences.json())
+
+
     }
 </script>
 
