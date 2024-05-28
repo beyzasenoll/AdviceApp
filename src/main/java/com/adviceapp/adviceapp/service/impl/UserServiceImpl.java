@@ -8,6 +8,7 @@ import com.adviceapp.adviceapp.mapper.UserMapper;
 import com.adviceapp.adviceapp.repository.JobRepository;
 import com.adviceapp.adviceapp.repository.UserRepository;
 import com.adviceapp.adviceapp.service.UserService;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
@@ -23,13 +24,22 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     private JobRepository jobRepository;
 
+    @Transactional
     @Override
     public UserDto createUser(UserDto userDto) {
         User user = UserMapper.mapToUser(userDto);
 
-        if (userDto.getJob() != null && userDto.getJob().getId() != null) {
-            Job job = jobRepository.findById(userDto.getJob().getId())
-                    .orElseThrow(() -> new ResourceNotFoundException("Job not found with id: " + userDto.getJob().getId()));
+        if (userDto.getJob() != null) {
+            Job job;
+            if (userDto.getJob().getId() != null) {
+                // Eğer Job id mevcutsa, Job'ı veritabanından bul
+                job = jobRepository.findById(userDto.getJob().getId())
+                        .orElseThrow(() -> new ResourceNotFoundException("Job not found with id: " + userDto.getJob().getId()));
+            } else {
+                // Eğer Job id mevcut değilse, yeni Job'ı kaydet
+                job = UserMapper.mapToJob(userDto.getJob());
+                job = jobRepository.save(job);
+            }
             user.setJob(job);
         }
 

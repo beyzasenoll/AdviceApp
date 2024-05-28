@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .then(data => {
                 console.log('Success:', data);
-                window.location.href = '/index?userId=' + data.id; // Redirect to the home endpoint
+                window.location.href = '/index?userId=' + data.id; // Redirect to the index endpoint
             })
             .catch(error => {
                 console.error('Error:', error);

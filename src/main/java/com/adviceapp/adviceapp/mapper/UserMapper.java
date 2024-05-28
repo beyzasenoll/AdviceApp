@@ -47,4 +47,10 @@ public class UserMapper {
 
         return user;
     }
+
+    public static Job mapToJob(JobDto jobDto) {
+        if (jobDto == null) return null;
+
+        return new Job(jobDto.getId(), jobDto.getJob_name(), null);
+    }
 }

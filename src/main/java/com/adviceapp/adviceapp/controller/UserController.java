@@ -1,6 +1,11 @@
 package com.adviceapp.adviceapp.controller;
 
+import com.adviceapp.adviceapp.dto.JobDto;
 import com.adviceapp.adviceapp.dto.UserDto;
+import com.adviceapp.adviceapp.entity.Job;
+import com.adviceapp.adviceapp.entity.User;
+import com.adviceapp.adviceapp.mapper.UserMapper;
+import com.adviceapp.adviceapp.repository.JobRepository;
 import com.adviceapp.adviceapp.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -14,11 +19,12 @@ import java.util.List;
 @RequestMapping("/api/user")
 public class UserController {
     private UserService userService;
+    private JobRepository jobRepository;
 
-    @PostMapping({"newUser"})
+    @PostMapping("/newUser")
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
-        UserDto savedUser = userService.createUser(userDto);
-        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
+        UserDto savedUserDto = userService.createUser(userDto);
+        return new ResponseEntity<>(savedUserDto, HttpStatus.CREATED);
     }
 
     @GetMapping("{id}")

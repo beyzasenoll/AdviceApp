@@ -34,5 +34,4 @@ public class Content {
     @ManyToMany(mappedBy = "contents")
     private List<User> users;
 
-
 }
